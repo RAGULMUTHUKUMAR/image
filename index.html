@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Upload Preview</title>
+</head>
+<body>
+
+<input type="file" id="imageInput" accept="image/*"/>
+<img id="preview" src="" alt="Image preview..." style="max-width: 400px; max-height: 400px;"/>
+
+<script>
+    document.getElementById('imageInput').addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (!file) {
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            document.getElementById('preview').src = reader.result;
+        };
+        reader.readAsDataURL(file);
+    });
+</script>
+
+</body>
+</html>
